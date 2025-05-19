@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import {  FaChevronDown } from "react-icons/fa";
-import {  IoSearchOutline } from "react-icons/io5";
+import { FaChevronDown } from "react-icons/fa";
+import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { infoLinks, navLinks } from "../../constants/navLinks";
-
 
 function Header() {
   const [data, setData] = useState();
   const [inputData, setInputData] = useState("");
-
+  const [isOpenParfums, setIsOpenFarfums] = useState(false);
+  const [isOpenAbout, setIsOpenAbout] = useState(false);
+  const [isOpenHelp, setIsOpenHelp] = useState(false);
   const [isScroll, setIsScroll] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -25,7 +26,6 @@ function Header() {
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -255,64 +255,77 @@ function Header() {
             to="/"
             className={`group flex flex-col gap-1 relative  text-lg  `}
           >
-            <div to="" className="playfair flex items-center gap-2">
+            <div
+              to=""
+              className="playfair flex items-center gap-2"
+              onClick={() => setIsOpenFarfums(!isOpenParfums)}
+            >
               <p>ƏTİRLƏR</p>
               <FaChevronDown
-                className={`group-hover:rotate-[-180deg] duration-500 text-lg`}
+                className={`${
+                  isOpenParfums ? "rotate-[-180deg]" : ""
+                }  duration-500 text-lg`}
               />
             </div>
-            <div className="hidden hover:flex group-hover:flex absolute w-[100vw] left-[-40vw] h-[100vh] bg-red-400 top-[5vh]">
-              <div>
-                <p>Ətirlər</p>
-                {data?.map((item) => {
-                  return (
-                    <p className="p-5" key={item.id}>
-                      {item.name}
-                    </p>
-                  );
-                })}
+            {isOpenParfums ? (
+              <div className="flex flex-col gap-3 absolute p-5 w-[17vw] left-0  bg-white top-[8vh] rounded-2xl">
+                <div className="flex flex-col gap-3">
+                  {data?.slice(0,6).map((item, index) => {
+                    return (
+                      <Link to="" className="hover:text-red-500" key={item.id}>
+                        {item.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+                <div className="font-semibold text-[16px] hover:text-red-500">Daha çox...</div>
+              
               </div>
-
-              <div>
-                <p>Brendlər</p>
-                {data?.map((item) => {
-                  return (
-                    <p className="p-5" key={item.id}>
-                      {item.brand}
-                    </p>
-                  );
-                })}
-              </div>
-            </div>
-            <hr className="w-full hidden group-hover:block h-1 bg-black" />
+            ) : null}
+            <hr
+              className={`${
+                isOpenParfums ? "block" : "hidden"
+              } w-full  h-1 bg-black absolute top-7`}
+            />
           </Link>
           <Link to="/" className="text-lg  playfair group relative">
             <p className="playfair">BRENDLƏR</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
           </Link>
-          <Link to="/" className="group flex flex-col gap-2 text-lg  relative">
-            <div className="flex items-center gap-2 playfair">
+          <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+            <div
+              className="flex items-center gap-2 playfair"
+              onClick={() => setIsOpenAbout(!isOpenAbout)}
+            >
               <p className="playfair">IYDƏ PARFUMERY</p>
               <FaChevronDown
-                className={` group-hover:rotate-[-180deg] duration-500`}
+                className={`${
+                  isOpenAbout ? "rotate-[-180deg]" : ""
+                } duration-500`}
               />
             </div>
 
-            <hr className="w-full top-[26px] hidden group-hover:block h-1 bg-black absolute" />
+            <hr
+              className={`${
+                isOpenAbout ? "block" : " hidden"
+              } w-full top-[26px]  h-1 bg-black absolute`}
+            />
 
-            <div className="group-hover:flex flex-col justify-end hidden absolute text-[16px] h-[50vh] bg-white p-8 w-[15vw] gap-5 right-0 top-[30px] rounded-xl">
-              {navLinks.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    to={item.path}
-                    className="hover:text-red-500 duration-500"
-                  >
-                    {item.text}
-                  </div>
-                );
-              })}
-            </div>
+            {isOpenAbout ? (
+              <div className="flex flex-col justify-end  absolute text-[16px] h-[50vh] bg-white p-8 w-[15vw] gap-5 right-0 top-[30px] rounded-xl">
+                {navLinks.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      to={item.path}
+                      className="hover:text-red-500 duration-500"
+                    >
+                      {item.text}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
           </Link>
           <Link to="/" className="text-lg  group relative">
             <p className="playfair">MAĞAZALAR</p>
@@ -322,36 +335,48 @@ function Header() {
             <p className="playfair">BLOQ</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
           </Link>
-          <Link to="/" className="group flex flex-col gap-2 text-lg  relative">
-            <div className="flex items-center gap-2 playfair">
+          <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+            <div
+              className="flex items-center gap-2 playfair "
+              onClick={() => setIsOpenHelp(!isOpenHelp)}
+            >
               <p>DƏSTƏK</p>
               <FaChevronDown
-                className={`group-hover:rotate-[-180deg] duration-500 text-lg`}
+                className={`${
+                  isOpenHelp ? "rotate-[-180deg]" : ""
+                } duration-500 text-lg`}
               />
             </div>
 
-            <hr className="w-full top-[26px] hidden group-hover:block h-1 bg-black absolute" />
-
-            <div className="group-hover:flex flex-col hidden absolute text-[16px] bg-white p-8 w-[15vw] gap-5 right-0 top-[30px] rounded-xl">
-              {infoLinks.map((item) => {
-                return (
-                  <div
-                    key={item.id}
-                    to={item.path}
-                    className="hover:text-red-500 duration-500"
-                  >
-                    {item.text}
-                  </div>
-                );
-              })}
-            </div>
+            <hr
+              className={`${
+                isOpenHelp ? "block" : "hidden"
+              } w-full top-[26px]  h-1 bg-black absolute `}
+            />
+            {isOpenHelp ? (
+              <div className="flex flex-col  absolute text-[16px] bg-white p-8 w-[15vw] gap-5 right-0 top-[30px] rounded-xl">
+                {infoLinks.map((item) => {
+                  return (
+                    <div
+                      key={item.id}
+                      to={item.path}
+                      className="hover:text-red-500 duration-500"
+                    >
+                      {item.text}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : null}
           </Link>
         </div>
       </nav>
 
-      <hr className="hidden md:block -mx-[45px] mt-2 text-neutral-300" />
-
-      
+      <hr
+        className={`${
+          isOpenHelp ? "block" : "hidden"
+        } -mx-[45px] mt-2 text-neutral-300`}
+      />
     </>
   );
 }
