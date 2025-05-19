@@ -37,7 +37,7 @@ function Footer() {
   return (
     <footer className="bg-neutral-900  h-fit text-white flex py-10 px-5 flex-col md:p-12 justify-center mx-[-16px] md:mx-[-45px]">
       <div className="flex md:flex-row flex-col justify-between gap-10 p-4 md:gap-0  md:w-[95%]">
-        <div className="flex justify-between w-[30%]">
+        <div className="flex justify-between md:w-[30%]">
           <div className="flex flex-col gap-3">
             <p className="font-semibold text-lg">Ətirlər</p>
             <div className="flex flex-col gap-2">
@@ -71,7 +71,7 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between w-[30%]">
+        <div className="flex justify-between md:w-[30%]">
           <div className="flex flex-col gap-3">
             <p className="text-[16px] font-bold md:w-full w-[28vw]">İYDƏ PARFUMERY</p>
             <div className="flex flex-col gap-2">
@@ -171,24 +171,24 @@ function Footer() {
         <div className="flex md:justify-start justify-center items-end gap-5">
           <Link
             to=""
-            className="flex justify-center items-center gap-2 md:gap-3 rounded-4xl bg-white py-3 px-4 md:p-4 w-[45vw] md:w-[15vw] h-fit"
+            className="flex justify-center items-center gap-2 md:gap-3 rounded-4xl bg-white py-3 px-3 md:p-4 w-[45vw] md:w-[15vw] h-fit"
           >
             <IoLogoApple className="text-2xl md:text-3xl text-black" />
-            <p className="text-lg md:text-xl font-semibold text-black">
+            <p className="text-[16px] md:text-xl font-semibold text-black">
               App Store
             </p>
           </Link>
 
           <Link
             to=""
-            className="flex justify-center items-center gap-2 md:gap-3 rounded-4xl bg-white py-3 px-4 md:p-4 w-[45vw] md:w-[15vw] h-fit"
+            className="flex justify-center items-center gap-2 md:gap-3 rounded-4xl bg-white py-3 px-3 md:p-4 w-[45vw] md:w-[15vw] h-fit"
           >
             <img
               src="/playstore-icon.svg"
               alt=""
               className="size-[25px] md:size-[30px] text-black"
             />
-            <p className="text-lg md:text-xl font-semibold text-black">
+            <p className="text-[16px] md:text-xl font-semibold text-black">
               Play store
             </p>
           </Link>
