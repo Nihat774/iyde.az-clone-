@@ -49,18 +49,18 @@ function SinglePage() {
           ({raiting})
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className="flex md:flex-row flex-col gap-5">
         <div>
           <img
             src={foundedData?.imgUrl}
             alt={foundedData?.name}
-            className="w-[40vw] h-[60vh] object-cover rounded-2xl border border-neutral-400"
+            className="w-full md:w-[40vw] h-[60vh] object-cover rounded-2xl border border-neutral-400"
           />
         </div>
 
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col md:items-start items-center gap-5">
           <h3 className="text-3xl font-semibold">Ətrin həcmini seçin:</h3>
-          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 w-[20vw] bg-white">
+          <div className="flex flex-col items-center gap-3 border rounded-xl p-5 w-[50vw] md:w-[20vw] bg-white">
             <img
               src="https://api.iyde.az/frontend/images/volumes/15ml-site.png"
               alt={foundedData?.name}
@@ -74,8 +74,8 @@ function SinglePage() {
               <TbCurrencyManat className="text-xl" />
             </div>
           </div>
-          <div className="flex gap-5">
-            <div className="text-xl border rounded-4xl h-fit bg-white flex justify-between w-[12vw] px-6 py-4">
+          <div className="flex gap-3 md:gap-5">
+            <div className="text-xl border rounded-4xl h-fit bg-white flex justify-between w-[35vw] md:w-[12vw] px-6 py-4">
               <p className="cursor-pointer" onClick={decrement}>
                 -
               </p>
@@ -85,7 +85,7 @@ function SinglePage() {
               </p>
             </div>
 
-            <button className="hover:bg-[#700022] cursor-pointer duration-300 flex justify-center gap-2 items-center font-semibold bg-rose-600 rounded-4xl w-[35vw] py-4 text-white">
+            <button className="hover:bg-[#700022] cursor-pointer duration-300 flex justify-center gap-2 items-center font-semibold bg-rose-600 rounded-4xl w-[50vw] md:w-[35vw] py-4 text-white">
               <svg
                 width="20"
                 height="20"
@@ -130,14 +130,14 @@ function SinglePage() {
           </div>
 
           {/* ikons */}
-          <div className="flex justify-between">
+          <div className="flex justify-between md:py-0 py-4">
             <div className="flex gap-4">
               <RiLinksLine className="text-4xl p-2 rounded-full bg-neutral-300 cursor-pointer" />
               <BiLogoFacebook className="text-4xl p-2 rounded-full bg-neutral-300 cursor-pointer" />
               <RiTwitterLine className="text-4xl p-2 rounded-full bg-neutral-300 cursor-pointer" />
             </div>
 
-            <div>
+            <div className="pl-5">
               <Link to="" className="flex gap-2">
                 <p>
                   <svg

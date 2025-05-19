@@ -35,19 +35,19 @@ function Footer() {
     },
   ];
   return (
-    <footer className="bg-neutral-900  h-fit text-white flex flex-col p-12 justify-center  mx-[-45px]">
-      <div className="flex md:flex-row flex-col justify-between gap-10 md:gap-0 w-[95%]">
-        <div className="flex justify-between">
+    <footer className="bg-neutral-900  h-fit text-white flex py-10 px-5 flex-col md:p-12 justify-center mx-[-16px] md:mx-[-45px]">
+      <div className="flex md:flex-row flex-col justify-between gap-10 p-4 md:gap-0  md:w-[95%]">
+        <div className="flex justify-between w-[30%]">
           <div className="flex flex-col gap-3">
             <p className="font-semibold text-lg">Ətirlər</p>
             <div className="flex flex-col gap-2">
               {footer.parfums.map((item, index) => {
                 return (
                   <Link to={item.path} key={index} className=" group">
-                    <p className="group-hover:text-red-500 duration-300 text-neutral-300 text-sm">
+                    <p className="group-hover:text-red-500 duration-300 text-neutral-300 text-[16px] md:text-sm">
                       {item.text}
                     </p>
-                    <hr className="group-hover:text-red-500 duration-300 w-full text-neutral-900 group-hover:block" />
+                    <hr className="group-hover:text-red-500 duration-300 w-[25vw] md:w-full text-neutral-900 group-hover:block" />
                   </Link>
                 );
               })}
@@ -60,10 +60,10 @@ function Footer() {
               {footer.collections.map((item, index) => {
                 return (
                   <Link to={item.path} key={index} className="group ">
-                    <p className="text-neutral-300 text-sm group-hover:text-red-500 duration-300">
+                    <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[5vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-[20vw] md:w-[5vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -71,17 +71,17 @@ function Footer() {
           </div>
         </div>
 
-        <div className="flex justify-between">
+        <div className="flex justify-between w-[30%]">
           <div className="flex flex-col gap-3">
             <p className="text-[16px] font-bold md:w-full w-[28vw]">İYDƏ PARFUMERY</p>
             <div className="flex flex-col gap-2">
               {aboutLinks.map((item) => {
                 return (
                   <Link to={item.path} className="group ">
-                    <p className="text-neutral-300 text-sm group-hover:text-red-500 duration-300">
+                    <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[9vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-[30vw] md:w-[9vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -94,10 +94,10 @@ function Footer() {
               {infoLinks.map((item) => {
                 return (
                   <Link to={item.path} key={item.id} className="group ">
-                    <p className="text-neutral-300 text-sm group-hover:text-red-500 duration-300">
+                    <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[7vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-[30vw] md:w-[7vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -112,11 +112,11 @@ function Footer() {
               return (
                 <div key={item.id} className="flex items-center gap-3 group">
                   <p>{item.icon}</p>
-                  <div className="flex flex-col gap-1">
+                  <div className="flex flex-col gap-1 w-fit">
                     <p className="font-bold text-lg group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[10vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-[35vw] md:w-[10vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </div>
                 </div>
               );
@@ -125,7 +125,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex md:flex-row flex-col md:gap-0 gap-5 justify-between">
+      <div className="flex md:flex-row flex-col md:gap-0 gap-5 justify-between px-4">
         <div className="relative flex flex-col gap-5 mt-4">
           <h4 className="text-lg font-semibold">Bizə abunə olun</h4>
           <input
@@ -195,7 +195,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex md:flex-row flex-col items-center text-[12px] gap-4 mt-9">
+      <div className="flex md:flex-row flex-col items-center text-[12px] gap-4 mt-9 px-4">
         <div className="flex  gap-4">
           <p>&copy; İYDE Perfumery</p>
           <p className="text-neutral-500 font-semibold">
