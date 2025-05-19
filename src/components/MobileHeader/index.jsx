@@ -16,6 +16,9 @@ function MobileHeader() {
   const [inputData, setInputData] = useState("");
   const [isOpenBurger, setIsOpenBurger] = useState(false);
   const [isOpenSearh, setIsOpenSearch] = useState(false);
+  const [isOpenParfums, setIsOpenFarfums] = useState(false);
+  const [isOpenAbout, setIsOpenAbout] = useState(false);
+  const [isOpenHelp, setIsOpenHelp] = useState(false);
   const [data, setData] = useState();
   const [isScroll, setIsScroll] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL;
@@ -50,7 +53,7 @@ function MobileHeader() {
       <header
         className={`${
           isScroll ? "bg-white border-b border-neutral-300" : ""
-        } px-4  py-3 flex items-center justify-between md:hidden`}
+        } px-4  py-3 flex items-center justify-between md:hidden ${isOpenSearh?"hidden":""}`}
       >
         {isOpenBurger ? (
           <MdOutlineClose
@@ -98,13 +101,13 @@ function MobileHeader() {
               type="text"
               value={inputData}
               className={`                      
-                 py-[10px] px-7 text-[15px] w-[70vw]
+                 py-[10px] px-7 text-[15px] w-[67vw]
                 focus:outline-none rounded-[36px]  border placeholder:text-black placeholder:font-semibold`}
               placeholder="Öz ətrini axtar"
               onChange={(e) => handleChange(e)}
             />
             <IoSearchOutline
-              className={` right-[30vw] top-[40px] absolute text-xl text-neutral-600 cursor-pointer hover:text-red-600 font-semibold duration-500`}
+              className={` right-[33vw] top-[40px] absolute text-xl text-neutral-600 cursor-pointer hover:text-red-600 font-semibold duration-500`}
             />
 
             <div
@@ -118,7 +121,7 @@ function MobileHeader() {
                 <div className="absolute top-18  bg-white w-[90vw] ">
                   {foundedData?.map((item) => (
                     <Link
-                    onClick={()=>setIsOpenSearch(!isOpenSearh)}
+                      onClick={() => setIsOpenSearch(!isOpenSearh)}
                       to={`/${item.slug}`}
                       className="flex items-center gap-4 p-5"
                       key={item.id}
@@ -147,101 +150,109 @@ function MobileHeader() {
       {isOpenBurger ? (
         <nav className="min-h-[90vh] flex flex-col justify-between bg-white z-50 p-4">
           <div className="flex flex-col gap-5">
-            <Link
-              to="/"
-              className={`group flex flex-col gap-1 relative  text-lg  `}
-            >
-              <div to="" className=" flex items-center justify-between">
+            <Link to="/" className={` flex flex-col gap-1 relative  text-lg  `}>
+              <div
+                to=""
+                className=" flex items-center justify-between"
+                onClick={() => setIsOpenFarfums(!isOpenParfums)}
+              >
                 <p className="text-xl">ƏTİRLƏR</p>
                 <GoChevronRight
-                  className={`group-hover:rotate-[90deg] duration-500 text-2xl font-semibold`}
+                  className={`${
+                    isOpenParfums ? "rotate-[90deg]" : ""
+                  }  duration-500 text-2xl font-semibold`}
                 />
               </div>
-              <div className="hidden hover:flex flex-col items-center group-hover:flex  w-full">
-                <div className="flex flex-col items-center">
-                  {data?.slice(4).map((item) => {
-                    return (
-                      <Link
-                        to={`/${item.name}`}
-                        className="p-2 hover:underline"
-                        key={item.id}
-                      >
-                        {item.name}
-                      </Link>
-                    );
-                  })}
-                  <Link to="" className="hover:text-red-500 text-center">
-                    Data çox...
-                  </Link>
+              {isOpenParfums ? (
+                <div className=" hover:flex flex-col items-center w-full">
+                  <div className="flex flex-col items-center">
+                    {data?.slice(4).map((item) => {
+                      return (
+                        <Link
+                          to={`/${item.name}`}
+                          className="p-2 hover:underline"
+                          key={item.id}
+                        >
+                          {item.name}
+                        </Link>
+                      );
+                    })}
+                    <Link to="" className="hover:text-red-500 text-center">
+                      Data çox...
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              ) : null}
               <hr className="w-full hidden  h-1 bg-black" />
             </Link>
-            <Link to="/" className="text-lg   group relative">
+            <Link to="/" className="text-lg  relative">
               <p className="text-xl">BRENDLƏR</p>
-              <hr className="h-1 w-full bg-black hidden top-6 absolute" />
             </Link>
-            <Link
-              to="/"
-              className="group flex flex-col gap-2 text-lg  relative"
-            >
-              <div className="flex justify-between items-center">
+            <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+              <div
+                className="flex justify-between items-center"
+                onClick={() => setIsOpenAbout(!isOpenAbout)}
+              >
                 <p className="text-xl">IYDƏ PARFUMERY</p>
                 <GoChevronRight
-                  className={`group-hover:rotate-[90deg] duration-500 text-2xl font-semibold`}
+                  className={`${
+                    isOpenAbout ? "rotate-[90deg]" : ""
+                  }  duration-500 text-2xl font-semibold`}
                 />
               </div>
 
               <hr className="w-full top-[26px] hidden  h-1 bg-black absolute" />
 
-              <div className="group-hover:flex flex-col justify-end hidden  text-[16px]  bg-white p-8   gap-2  rounded-xl">
-                {navLinks.map((item) => {
-                  return (
-                    <div
-                      key={item.id}
-                      to={item.path}
-                      className="hover:text-red-500 duration-300 text-xl"
-                    >
-                      {item.text}
-                    </div>
-                  );
-                })}
-              </div>
+              {isOpenAbout ? (
+                <div className="flex flex-col justify-end   text-[16px]  bg-white p-8   gap-2  rounded-xl">
+                  {navLinks.map((item) => {
+                    return (
+                      <div
+                        key={item.id}
+                        to={item.path}
+                        className="hover:text-red-500 duration-300 text-xl"
+                      >
+                        {item.text}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
             </Link>
-            <Link to="/" className="text-lg  group relative">
+            <Link to="/" className="text-lg relative">
               <p className="text-xl">MAĞAZALAR</p>
-              <hr className="h-1 w-full bg-black hidden  top-6 absolute" />
             </Link>
-            <Link to="/" className="text-lg  group relative">
+            <Link to="/" className="text-lg relative">
               <p className="text-xl">BLOQ</p>
-              <hr className="h-1 w-full bg-black hidden  top-6 absolute" />
             </Link>
-            <Link
-              to="/"
-              className="group flex flex-col gap-2 text-lg  relative"
-            >
-              <div className="flex justify-between items-center gap-2">
+            <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+              <div
+                className="flex justify-between items-center gap-2"
+                onClick={() => setIsOpenHelp(!isOpenHelp)}
+              >
                 <p className="text-xl ">DƏSTƏK</p>
                 <GoChevronRight
-                  className={`group-hover:rotate-[90deg] duration-500 text-2xl font-semibold`}
+                  className={`${
+                    isOpenHelp ? "rotate-[90deg]" : ""
+                  } duration-500 text-2xl font-semibold`}
                 />
               </div>
 
-              <hr className="w-full  hidden  h-1 bg-black " />
-
-              <div className="hidden group-hover:flex flex-col  text-[16px] bg-white p-4 gap-5 rounded-xl">
-                {infoLinks.map((item) => {
-                  return (
-                    <div
-                      key={item.id}
-                      to={item.path}
-                      className="hover:text-red-500 duration-300 text-xl"
-                    >
-                      {item.text}
-                    </div>
-                  );
-                })}
-              </div>
+              {isOpenHelp ? (
+                <div className="flex flex-col  text-[16px] bg-white p-4 gap-5 rounded-xl">
+                  {infoLinks.map((item) => {
+                    return (
+                      <div
+                        key={item.id}
+                        to={item.path}
+                        className="hover:text-red-500 duration-300 text-xl"
+                      >
+                        {item.text}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : null}
             </Link>
           </div>
           <hr className="w-full text-neutral-300" />
