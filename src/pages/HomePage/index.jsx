@@ -10,6 +10,7 @@ import { FaArrowDown19, FaArrowDown91 } from "react-icons/fa6";
 function HomePage() {
   const [data, setData] = useState();
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [checkedParfum, setCheckedParfum] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
   useEffect(() => {
     fetch(API_URL)
@@ -21,6 +22,11 @@ function HomePage() {
     console.log(data);
   }, [data]);
   const dalaLength = data?.length;
+
+useEffect(()=>{
+  console.log(checkedParfum);
+  
+},[checkedParfum])
 
   return (
     <section>
@@ -136,7 +142,7 @@ function HomePage() {
         </div>
       </div>
       <div className="flex">
-        <Aside />
+        <Aside setCheckedParfum = {setCheckedParfum} checkedParfum = {checkedParfum}/>
         <Parfum />
       </div>
     </section>

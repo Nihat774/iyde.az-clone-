@@ -41,7 +41,7 @@ function Header() {
       <header
         className={`  ${
           isScroll
-            ? "h-fit py-2 bg-white -mx-[45px] px-[55px] border-b-1 border-neutral-300"
+            ? "h-fit py-2 bg-white -mx-[42px] px-[55px] border-b-1 border-neutral-300"
             : "h-[26.5vh]"
         }  sticky top-0 z-50 hidden md:flex items-center justify-between `}
       >
@@ -50,8 +50,8 @@ function Header() {
         <div to="/" className="flex w-[48%] justify-between items-center gap-9">
           <Link to="/">
             <svg
-              width={`${isScroll ? "50px" : "122px"}`}
-              height={`${isScroll ? "50px" : "122px"}`}
+              width={`${isScroll ? "50px" : "112px"}`}
+              height={`${isScroll ? "50px" : "112px"}`}
               viewBox="0 0 122 119"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ function Header() {
 
         <div
           className={`flex items-center justify-between ${
-            isScroll ? "w-[31%]" : "w-[35%]"
+            isScroll ? "w-[31%]" : "w-[37%]"
           }`}
         >
           <div className="flex items-center gap-4 ">
@@ -145,14 +145,14 @@ function Header() {
             </div>
           </div>
           {/* login icon and basket icon */}
-          <div className="flex gap-9 ">
+          <div className="flex gap-6 ">
             <Link
               to="/"
               className="flex flex-col items-center hover:text-red-500 duration-500 "
             >
               <svg
-                width={`${isScroll ? "25px" : "46px"}`}
-                height={`${isScroll ? "25px" : "46px"}`}
+                width={`${isScroll ? "25px" : "40px"}`}
+                height={`${isScroll ? "25px" : "40px"}`}
                 viewBox="0 0 46 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -199,8 +199,8 @@ function Header() {
                 0
               </p>
               <svg
-                width={`${isScroll ? "25px" : "46px"}`}
-                height={`${isScroll ? "25px" : "46px"}`}
+                width={`${isScroll ? "25px" : "40px"}`}
+                height={`${isScroll ? "25px" : "40px"}`}
                 viewBox="0 0 46 46"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -375,7 +375,7 @@ function Header() {
       <hr
         className={`${
           isOpenHelp ? "block" : "hidden"
-        } -mx-[45px] mt-2 text-neutral-300`}
+        } -mx-[42px] mt-2 text-neutral-300`}
       />
     </>
   );

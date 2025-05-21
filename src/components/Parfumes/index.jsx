@@ -24,7 +24,7 @@ function Parfum() {
                   to={`/${item.slug}`}
                   className=" rounded-2xl group flex flex-col gap-4"
                 >
-                  <div className="group bg-white rounded-2xl flex flex-col justify-around items-center gap-2 h-[230px] md:h-[340px] w-[165px] md:w-[300px]">
+                  <div className="group bg-white rounded-2xl flex flex-col justify-around items-center gap-2 h-[230px] md:h-[340px] w-[165px] md:w-[275px]">
                     <img
                       className="rounded-2xl md:h-[230px] h-[150px] w-[140px] md:w-[250px]  group-hover:scale-110 duration-500 "
                       src={item.imgUrl}
@@ -101,7 +101,7 @@ function Parfum() {
                           className="text-neutral-500 text-[10px]"
                         />
                       ))}
-                     <p className="text-sm">({raiting})</p>
+                      <p className="text-sm">({raiting})</p>
                     </div>
                   </div>
                   <p className="text-[16px] font-semibold">{item.name}</p>

@@ -53,7 +53,7 @@ function SubHeader() {
           </div>
         </div>
       </header>
-      <hr className="md:block hidden -mx-[45px] text-neutral-300 mt-1" />
+      <hr className="md:block hidden -mx-[42px] text-neutral-300 mt-1" />
     </>
   );
 }

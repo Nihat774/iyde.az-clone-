@@ -35,7 +35,7 @@ function Footer() {
     },
   ];
   return (
-    <footer className="bg-neutral-900  h-fit text-white flex py-10 px-5 flex-col md:p-12 justify-center mx-[-16px] md:mx-[-45px]">
+    <footer className="bg-neutral-900  h-fit text-white flex py-10 px-5 flex-col md:p-12 justify-center mx-[-16px] md:mx-[-42px]">
       <div className="flex md:flex-row flex-col justify-between gap-10 p-4 md:gap-0  md:w-[95%]">
         <div className="flex justify-between md:w-[30%]">
           <div className="flex flex-col gap-3">
@@ -75,9 +75,9 @@ function Footer() {
           <div className="flex flex-col gap-3">
             <p className="text-[16px] font-bold md:w-full w-[28vw]">İYDƏ PARFUMERY</p>
             <div className="flex flex-col gap-2">
-              {aboutLinks.map((item) => {
+              {aboutLinks.map((item,index) => {
                 return (
-                  <Link to={item.path} className="group ">
+                  <Link to={item.path} key={index} className="group ">
                     <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
