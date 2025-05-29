@@ -11,8 +11,10 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { Link } from "react-router-dom";
 import { infoLinks, navLinks } from "../../constants/navLinks";
 import { IoSearchOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 
 function MobileHeader() {
+  const basketData = useSelector((state)=>state.counter.value)
   const [inputData, setInputData] = useState("");
   const [isOpenBurger, setIsOpenBurger] = useState(false);
   const [isOpenSearh, setIsOpenSearch] = useState(false);
@@ -261,13 +263,13 @@ function MobileHeader() {
             {/* login and basket icon */}
             <div className="flex flex-col gap-4 ">
               <Link
-                to="/"
+                to="/basket"
                 className="relative flex gap-4 items-center  hover:text-red-500 duration-500 "
               >
                 <p
                   className={` px-[8px] py-[1px] bg-green-600 font-semibold text-[15px]  left-[15px] top-[-5px] absolute text-white rounded-full`}
                 >
-                  0
+                  {basketData.length}
                 </p>
                 <svg
                   width={`30`}
@@ -310,8 +312,9 @@ function MobileHeader() {
                 </svg>
                 <p className={`text-lg font-semibold `}>Səbət</p>
               </Link>
+
               <Link
-                to="/"
+                to="/login"
                 className="flex gap-3 items-center hover:text-red-500 duration-500 "
               >
                 <svg
