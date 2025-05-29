@@ -4,7 +4,7 @@ function Register() {
   const pathname = useLocation();
 
   return (
-    <main className="flex -mx-[42px] h-[89vh]">
+    <main className="flex -mx-4 md:-mx-[42px] h-[89vh]">
       <section className="w-[45%] text-white bg-[#121212]  hidden md:flex items-center flex-col gap-9 justify-center h-[100vh] ">
         <svg
           width="122"

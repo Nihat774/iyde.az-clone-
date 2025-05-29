@@ -180,7 +180,7 @@ function Basket() {
                                 </p>
                               </div>
 
-                              <div className="flex items-center justify-between bg-green-500 w-[43vw] md:w-[24vw] ">
+                              <div className="flex items-center justify-between w-[43vw] md:w-[24vw] ">
                                 <div className="flex justify-between items-center w-fit md:w-[50%]">
                                   <div className="flex justify-between items-center  w-[20vw] md:w-[7vw] rounded-4xl px-3 py-1 border">
                                     <button
