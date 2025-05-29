@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { AddType, Remove } from "../../store/parfumSlice";
 import Loading from "../Loading";
 import { SuccessAlert } from "../SweetAlert";
+import { Link } from "react-router-dom";
 function Parfum() {
   const [data, setData] = useState();
   const API_URL = import.meta.env.VITE_API_URL;
@@ -45,7 +46,7 @@ function Parfum() {
             const emptyRaiting = 5 - raiting;
             return (
               <div className="flex flex-col gap-4 py-6" key={item.id}>
-                <div
+                <Link
                   to={`/${item.slug}`}
                   className=" rounded-2xl group flex flex-col gap-4"
                 >
@@ -138,7 +139,7 @@ function Parfum() {
                     </div>
                   </div>
                   <p className="text-[16px] font-semibold">{item.name}</p>
-                </div>
+                </Link>
                 {/* stars */}
                 <div className="hidden md:flex items-center ">
                   {[...Array(raiting)].map((_, i) => (

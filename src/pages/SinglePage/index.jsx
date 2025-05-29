@@ -6,6 +6,7 @@ import { TbCurrencyManat } from "react-icons/tb";
 import { Link, useParams } from "react-router-dom";
 
 function SinglePage() {
+
   const { slug } = useParams();
   const [data, setData] = useState();
   const [count, setCount] = useState(1);
@@ -76,13 +77,13 @@ function SinglePage() {
           </div>
           <div className="flex gap-3 md:gap-5">
             <div className="text-xl border rounded-4xl h-fit bg-white flex justify-between w-[35vw] md:w-[12vw] px-6 py-4">
-              <p className="cursor-pointer" onClick={decrement}>
+              <button className="cursor-pointer" onClick={decrement} disabled={count ==1}>
                 -
-              </p>
+              </button>
               <p>{count}</p>
-              <p className="cursor-pointer" onClick={increment}>
+              <button className="cursor-pointer" onClick={increment} >
                 +
-              </p>
+              </button>
             </div>
 
             <button className="hover:bg-[#700022] cursor-pointer duration-300 flex justify-center gap-2 items-center font-semibold bg-rose-600 rounded-4xl w-[50vw] md:w-[35vw] py-4 text-white">

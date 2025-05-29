@@ -8,10 +8,16 @@ import { Link } from "react-router-dom";
 import { decrement, increment, Remove } from "../../store/parfumSlice";
 
 function Basket() {
+    const [endPrice,setEndPrice] = useState(0);
   const basketData = useSelector((state) => state.counter.value);
+  const count = useSelector((state)=>state.counter.count)
   const dataCount = useSelector((state) => state.counter.count);
   const [isClickedRadio, setIsClickedRadio] = useState(false);
   const dispatch = useDispatch();
+  const totalPrice = basketData.reduce((sum,item)=>sum + item.maxPrice,0) * count
+ 
+  
+  // setEndPrice( basketData.maxPrice)
   useEffect(() => {
     console.log(basketData);
   }, [basketData]);
@@ -181,7 +187,7 @@ function Basket() {
                               </div>
 
                               <div className="flex items-center justify-between w-[43vw] md:w-[24vw] ">
-                                <div className="flex justify-between items-center w-fit md:w-[50%]">
+                                <div className="flex justify-between items-center gap-4 w-fit md:w-[50%]">
                                   <div className="flex justify-between items-center  w-[20vw] md:w-[7vw] rounded-4xl px-3 py-1 border">
                                     <button
                                       disabled={dataCount === 1}
@@ -235,7 +241,7 @@ function Basket() {
                       <div className="flex gap-8">
                         <p className="text-neutral-500">Məbləğ</p>
                         <div className="font-semibold flex items-center gap-1">
-                          <p>40</p>
+                          <p>{totalPrice}</p>
                           <TbCurrencyManat />
                         </div>
                       </div>
@@ -255,7 +261,7 @@ function Basket() {
                         Yekun məbləğ
                       </h3>
                       <div className="flex items-center gap-1 font-semibold text-2xl">
-                        <p>40</p>
+                        <p>{totalPrice}</p>
                         <TbCurrencyManat />
                       </div>
                     </div>
@@ -264,12 +270,12 @@ function Basket() {
                     <Link to="" className="underline text-neutral-500">
                       Alışverişə qayıt
                     </Link>
-                    <Link
-                      to=""
-                      className="md:flex hidden py-4 w-[13vw] text-center rounded-4xl hover:bg-green-700 duration-500 bg-green-600 text-white text-xl font-semibold"
+                    <button
+                      
+                      className="md:flex cursor-pointer hidden py-4 w-[13vw] text-center rounded-4xl hover:bg-green-700 duration-500 bg-green-600 text-white text-xl font-semibold"
                     >
                       Sifariş et
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>

@@ -43,11 +43,11 @@ function Footer() {
             <div className="flex flex-col gap-2">
               {footer.parfums.map((item, index) => {
                 return (
-                  <Link to={item.path} key={index} className=" group">
+                  <Link to={item.path} key={index} className="w-fit group">
                     <p className="group-hover:text-red-500 duration-300 text-neutral-300 text-[16px] md:text-sm">
                       {item.text}
                     </p>
-                    <hr className="group-hover:text-red-500 duration-300 w-[25vw] md:w-full text-neutral-900 group-hover:block" />
+                    <hr className="group-hover:text-red-500 duration-300 w-full md:w-full text-neutral-900 group-hover:block" />
                   </Link>
                 );
               })}
@@ -59,11 +59,11 @@ function Footer() {
             <div className="flex flex-col gap-2">
               {footer.collections.map((item, index) => {
                 return (
-                  <Link to={item.path} key={index} className="group ">
+                  <Link to={item.path} key={index} className="group w-fit">
                     <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[20vw] md:w-[5vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-full text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -77,11 +77,11 @@ function Footer() {
             <div className="flex flex-col gap-2">
               {aboutLinks.map((item,index) => {
                 return (
-                  <Link to={item.path} key={index} className="group ">
+                  <Link to={item.path} key={index} className="group w-fit">
                     <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[30vw] md:w-[9vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-full  text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -93,11 +93,11 @@ function Footer() {
             <div className="flex flex-col gap-2">
               {infoLinks.map((item) => {
                 return (
-                  <Link to={item.path} key={item.id} className="group ">
+                  <Link to={item.path} key={item.id} className="group w-fit">
                     <p className="text-neutral-300 text-[16px] md:text-sm group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[30vw] md:w-[7vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-full md:w-[7vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </Link>
                 );
               })}
@@ -116,7 +116,7 @@ function Footer() {
                     <p className="font-bold text-lg group-hover:text-red-500 duration-300">
                       {item.text}
                     </p>
-                    <hr className="w-[35vw] md:w-[10vw] text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
+                    <hr className="w-full  text-neutral-900 group-hover:block group-hover:text-red-500 duration-300" />
                   </div>
                 </div>
               );
