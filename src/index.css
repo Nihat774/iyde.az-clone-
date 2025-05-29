@@ -6,7 +6,7 @@
   font-style: normal;
 }
 @font-face {
-  font-family: 'Playfair';
+  font-family: 'Playfair Display';
   src: url('./../fonts/PlayfairDisplay-VariableFont_wght.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
@@ -16,7 +16,7 @@ body {
   background-color: rgb(250,250,250);
 }
 .playfair {
-  font-family: 'Playfair', serif;
+  font-family: 'Playfair Display', serif;
 }
 .dropdown{
    transform:rotate(180deg) ; 
@@ -31,3 +31,17 @@ body {
   border-radius: 10px;
 }
 
+select {
+  padding-right: 1.5em; /* dropdown icon üçün sağda boşluq */
+  padding-left: 0.5em;  /* soldan boşluq */
+  appearance: none;     /* default iconu gizlədir */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('dropdown-icon.svg'); /* öz iconunuz */
+  background-repeat: no-repeat;
+  background-position: left center; /* iconu solda yerləşdirir */
+  background-size: 1em;
+}
+.swal2-title {
+  font-size: 18px !important; /* İstədiyiniz kiçik ölçü */
+}

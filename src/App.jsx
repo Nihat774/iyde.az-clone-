@@ -1,4 +1,3 @@
-
 import MyRoute from "./config/MyRoute";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -10,7 +9,7 @@ import MobileNavbar from "./components/MobileNavbar";
 function App() {
   return (
     <div className={`px-4 md:px-[42px]`}>
-    <SubHeader/>
+      <SubHeader />
       <Header />
       <MobileHeader />
       <MyRoute />

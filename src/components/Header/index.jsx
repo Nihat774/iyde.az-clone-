@@ -3,6 +3,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { infoLinks, navLinks } from "../../constants/navLinks";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [data, setData] = useState();
@@ -13,6 +14,7 @@ function Header() {
   const [isScroll, setIsScroll] = useState(false);
   const API_URL = import.meta.env.VITE_API_URL;
 
+  const basketData = useSelector((state) => state.counter.value);
   const foundedData = data?.filter((item) =>
     item.name.toLowerCase().startsWith(inputData.toLowerCase())
   );
@@ -29,7 +31,7 @@ function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScroll(window.scrollY > 10); // 50px-dən artıq scroll olunduqda dəyişir
+      setIsScroll(window.scrollY > 10); 
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -147,7 +149,7 @@ function Header() {
           {/* login icon and basket icon */}
           <div className="flex gap-6 ">
             <Link
-              to="/"
+              to="/login"
               className="flex flex-col items-center hover:text-red-500 duration-500 "
             >
               <svg
@@ -188,7 +190,7 @@ function Header() {
             </Link>
 
             <Link
-              to="/"
+              to="/basket"
               className="relative flex flex-col items-center hover:text-red-500 duration-500 "
             >
               <p
@@ -196,7 +198,7 @@ function Header() {
                   isScroll ? "px-[6px] py-[1px]" : "px-[9px] py-[3px]"
                 } bg-green-600 font-semibold text-[15px]  right-[-10px] top-[-7px] absolute text-white rounded-full`}
               >
-                0
+                {basketData.length}
               </p>
               <svg
                 width={`${isScroll ? "25px" : "40px"}`}
@@ -251,12 +253,12 @@ function Header() {
 
       <nav className="hidden md:flex justify-center">
         <div className="w-[75%] flex justify-between">
-          <Link
-            to="/"
+          <div
+            
             className={`group flex flex-col gap-1 relative  text-lg  `}
           >
             <div
-              to=""
+            
               className="playfair flex items-center gap-2"
               onClick={() => setIsOpenFarfums(!isOpenParfums)}
             >
@@ -287,12 +289,12 @@ function Header() {
                 isOpenParfums ? "block" : "hidden"
               } w-full  h-1 bg-black absolute top-7`}
             />
-          </Link>
-          <Link to="/" className="text-lg  playfair group relative">
+          </div>
+          <div className="text-lg  playfair group relative">
             <p className="playfair">BRENDLƏR</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
-          </Link>
-          <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+          </div>
+          <div className=" flex flex-col gap-2 text-lg  relative">
             <div
               className="flex items-center gap-2 playfair"
               onClick={() => setIsOpenAbout(!isOpenAbout)}
@@ -326,16 +328,16 @@ function Header() {
                 })}
               </div>
             ) : null}
-          </Link>
-          <Link to="/" className="text-lg  group relative">
+          </div>
+          <div  className="text-lg  group relative">
             <p className="playfair">MAĞAZALAR</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
-          </Link>
-          <Link to="/" className="text-lg  group relative">
+          </div>
+          <div  className="text-lg  group relative">
             <p className="playfair">BLOQ</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
-          </Link>
-          <Link to="/" className=" flex flex-col gap-2 text-lg  relative">
+          </div>
+          <div  className=" flex flex-col gap-2 text-lg  relative">
             <div
               className="flex items-center gap-2 playfair "
               onClick={() => setIsOpenHelp(!isOpenHelp)}
@@ -368,15 +370,11 @@ function Header() {
                 })}
               </div>
             ) : null}
-          </Link>
+          </div>
         </div>
       </nav>
 
-      <hr
-        className={`${
-          isOpenHelp ? "block" : "hidden"
-        } -mx-[42px] mt-2 text-neutral-300`}
-      />
+      
     </>
   );
 }

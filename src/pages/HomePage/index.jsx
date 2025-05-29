@@ -19,14 +19,14 @@ function HomePage() {
   }, []);
 
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
   }, [data]);
   const dalaLength = data?.length;
 
-useEffect(()=>{
-  console.log(checkedParfum);
+// useEffect(()=>{
+//   console.log(checkedParfum);
   
-},[checkedParfum])
+// },[checkedParfum])
 
   return (
     <section>
@@ -93,7 +93,7 @@ useEffect(()=>{
           </div>
 
           {isSortOpen ? (
-            <div className="bg-white rounded-3xl py-5 px-5 z-50 w-fit flex flex-col gap-5 absolute left-0 top-[16vh] md:w-[12vw] md:left-[87.5%] md:top-21 h-fit">
+            <div className="bg-white rounded-3xl py-5 px-5 z-50 w-fit flex flex-col gap-5 absolute left-0 top-[19vh] md:w-[12vw] md:left-[87.5%] md:top-21 h-fit">
               <Link
                 to="/"
                 className="hover:text-red-500 duration-300 flex gap-3 items-center group"

@@ -1,14 +1,17 @@
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function MobileNavbar() {
+  const basketData = useSelector((state)=>state.counter.value)
   return (
-    <nav className="bg-neutral-200 rounded-4xl -mx-4 p-3 fixed z-30 bottom-2 flex justify-around w-full md:hidden">
+    <nav className="bg-neutral-100 rounded-4xl -mx-4  py-2 px-3 fixed z-30 bottom-2 flex items-center justify-around w-full md:hidden">
       {/* whatsapp */}
-      <div className="flex gap-2 flex-col items-center">
+      <Link to="https://wa.me/+994557748548" className="flex gap-2 flex-col items-center">
         {/*whatsapp ikon */}
-        <div className="cursor-pointer">
+        <div  className="cursor-pointer">
           <svg
-            width={`34`}
-            height={`34`}
+            width={`30`}
+            height={`30`}
             viewBox="0 0 31 31"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -20,14 +23,14 @@ function MobileNavbar() {
           </svg>
         </div>
         <p className="text-[12px]">WhatsApp</p>
-      </div>
+      </Link>
 
       {/* zeng et */}
-      <div className="flex items-center flex-col gap-1">
+      <Link to="tel:+994557748548" className="flex items-center flex-col gap-1">
         <div>
           <svg
-            width="38"
-            height="38"
+            width="30"
+            height="30"
             viewBox="0 0 63 64"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -41,13 +44,13 @@ function MobileNavbar() {
           </svg>
         </div>
         <p className="text-[12px]">Zəng et</p>
-      </div>
+      </Link>
       {/* login  */}
-      <div className="flex items-center flex-col gap-1">
+      <Link to="/login" className="flex items-center flex-col gap-1">
         <div>
           <svg
-            width={`34`}
-            height={`34`}
+            width={`30`}
+            height={`30`}
             viewBox="0 0 46 46"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -74,20 +77,20 @@ function MobileNavbar() {
           </svg>
         </div>
         <p className="text-[12px]">Daxil ol</p>
-      </div>
+      </Link>
 
       {/* BASKET */}
-      <div className=" flex flex-col items-center">
+      <Link to="/basket" className=" flex flex-col items-center">
         <div className="relative">
           <p
             className={`px-[7px] py-[2px]
           bg-green-600 font-semibold text-[13px]  right-[-13px] top-[-8px] absolute text-white rounded-full`}
           >
-            0
+            {basketData.length}
           </p>
           <svg
-            width={`34`}
-            height={`34`}
+            width={`30`}
+            height={`30`}
             viewBox="0 0 46 46"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -126,7 +129,7 @@ function MobileNavbar() {
           </svg>
         </div>
         <p className="text-[12px]">Səbət</p>
-      </div>
+      </Link>
     </nav>
   );
 }

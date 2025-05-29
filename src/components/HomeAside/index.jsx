@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AddType } from "../../store/parfumSlice";
 
 function Aside({checkedParfum,setCheckedParfum}) {
   const [data, setData] = useState([]);
   const [brand, setBrand] = useState("");
   const [isCheck, setIsCheck] = useState(false);
-  const API_URL = import.meta.env.VITE_API_URL;4
-
+  const API_URL = import.meta.env.VITE_API_URL;
+  const dispatch = useDispatch();
   useEffect(() => {
     fetch(API_URL)
       .then((res) => res.json())
@@ -16,14 +18,15 @@ function Aside({checkedParfum,setCheckedParfum}) {
   const womanParfum = data?.filter((item) => item.genderType == "woman");
 
   const handleCheck = (name) => {
-    const clicklenmisCheck = checkedParfum?.find((item)=>item == name);
-    console.log(clicklenmisCheck);
-    
-  if(clicklenmisCheck != undefined && clicklenmisCheck.length ==0){
-    setCheckedParfum((prev) => [...prev,name ]);
-    }
-
+    const clicklenmisCheck = data?.filter((item)=>item.genderType == name);   
+    dispatch(AddType(name)) 
   };
+
+  const value = useSelector(state=>state.counter.value)
+  useEffect(()=>{
+    console.log(value);
+  },[value])
+  
 
   const foundedBrand = data?.filter((item) =>
     item.brand.toLowerCase().startsWith(brand.toLowerCase())
