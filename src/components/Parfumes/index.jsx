@@ -30,9 +30,9 @@ function Parfum() {
   };
   const basketData = useSelector((state) => state.counter.value);
 
-  useEffect(() => {
-    console.log(basketData);
-  }, [basketData]);
+  // useEffect(() => {
+  //   console.log(basketData);
+  // }, [basketData]);
 
   return (
     <>
@@ -46,18 +46,17 @@ function Parfum() {
             const emptyRaiting = 5 - raiting;
             return (
               <div className="flex flex-col gap-4 py-6" key={item.id}>
-                <Link
-                  to={`/${item.slug}`}
-                  className=" rounded-2xl group flex flex-col gap-4"
-                >
-                  <div className="group bg-white rounded-2xl flex flex-col justify-around items-center gap-2 h-[230px] md:h-[340px] w-[165px] md:w-[275px]">
+                <div className=" rounded-2xl group flex flex-col gap-4">
+                  <div
+                    className="group bg-white rounded-2xl flex flex-col justify-around items-center gap-2 h-[230px] md:h-[340px] w-[165px] md:w-[275px]"
+                  >
                     <img
                       className="rounded-2xl md:h-[230px] h-[150px] w-[140px] md:w-[250px]  group-hover:scale-110 duration-500 "
                       src={item.imgUrl}
                       alt={item.name}
                     />
 
-                    <div className="hidden md:flex justify-center p-2">
+                    <div className="hidden md:flex justify-center p-2 z-40">
                       <button
                         onClick={() => {
                           handleSubmit(item);
@@ -111,7 +110,8 @@ function Parfum() {
                     </div>
                   </div>
 
-                  <div className="flex justify-between">
+                  <Link
+                    to={`/${item.slug}`} className="flex justify-between">
                     <p className="text-2xl font-semibold md:block">
                       {item.minPrice}
                       <span className="text-[8px] md:text-[10px] font-bold">
@@ -122,7 +122,7 @@ function Parfum() {
                         ₼
                       </span>
                     </p>
-                    <div className="md:hidden flex items-center ">
+                    {/* <div className="md:hidden flex items-center ">
                       {[...Array(raiting)].map((_, i) => (
                         <IoStarSharp
                           key={i}
@@ -136,12 +136,12 @@ function Parfum() {
                         />
                       ))}
                       <p className="text-sm">({raiting})</p>
-                    </div>
-                  </div>
+                    </div> */}
+                  </Link>
                   <p className="text-[16px] font-semibold">{item.name}</p>
-                </Link>
+                </div>
                 {/* stars */}
-                <div className="hidden md:flex items-center ">
+                {/* <div className="hidden md:flex items-center ">
                   {[...Array(raiting)].map((_, i) => (
                     <IoStarSharp key={i} className="text-yellow-400 text-xl" />
                   ))}
@@ -149,7 +149,7 @@ function Parfum() {
                     <IoStarSharp key={i} className="text-neutral-500 text-xl" />
                   ))}
                   ({raiting})
-                </div>
+                </div> */}
 
                 {/* basket button */}
                 <button

@@ -29,11 +29,11 @@ function Aside({checkedParfum,setCheckedParfum}) {
   
 
   const foundedBrand = data?.filter((item) =>
-    item.brand.toLowerCase().startsWith(brand.toLowerCase())
+    item.brand?.toLowerCase().startsWith(brand.toLowerCase())
   );
 
   const foundedBrandItem = foundedBrand?.find((item) =>
-    item.brand.toLowerCase()
+    item.brand?.toLowerCase()
   );
   return (
     <aside className="w-[30vw] h-fit p-5 md:block hidden ">
