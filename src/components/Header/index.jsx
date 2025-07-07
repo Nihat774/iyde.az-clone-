@@ -259,7 +259,7 @@ function Header() {
           >
             <div
             
-              className="playfair flex items-center gap-2"
+              className="playfair cursor-pointer flex items-center gap-2"
               onClick={() => setIsOpenFarfums(!isOpenParfums)}
             >
               <p>ƏTİRLƏR</p>
@@ -290,16 +290,16 @@ function Header() {
               } w-full  h-1 bg-black absolute top-7`}
             />
           </div>
-          <div className="text-lg  playfair group relative">
+          <div className="text-lg cursor-pointer group relative">
             <p className="playfair">BRENDLƏR</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
           </div>
           <div className=" flex flex-col gap-2 text-lg  relative">
             <div
-              className="flex items-center gap-2 playfair"
+              className="flex items-center gap-2 cursor-pointer"
               onClick={() => setIsOpenAbout(!isOpenAbout)}
             >
-              <p className="playfair">IYDƏ PARFUMERY</p>
+              <p className="playfair ">IYDƏ PARFUMERY</p>
               <FaChevronDown
                 className={`${
                   isOpenAbout ? "rotate-[-180deg]" : ""
@@ -329,17 +329,17 @@ function Header() {
               </div>
             ) : null}
           </div>
-          <div  className="text-lg  group relative">
+          <div  className="text-lg  group relative cursor-pointer">
             <p className="playfair">MAĞAZALAR</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
           </div>
-          <div  className="text-lg  group relative">
+          <div  className="text-lg  group relative cursor-pointer">
             <p className="playfair">BLOQ</p>
             <hr className="h-1 w-full bg-black hidden group-hover:block top-6 absolute" />
           </div>
           <div  className=" flex flex-col gap-2 text-lg  relative">
             <div
-              className="flex items-center gap-2 playfair "
+              className="flex items-center gap-2 playfair cursor-pointer"
               onClick={() => setIsOpenHelp(!isOpenHelp)}
             >
               <p>DƏSTƏK</p>

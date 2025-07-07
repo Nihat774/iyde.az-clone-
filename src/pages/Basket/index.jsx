@@ -8,24 +8,29 @@ import { Link } from "react-router-dom";
 import { decrement, increment, Remove } from "../../store/parfumSlice";
 
 function Basket() {
-    const [endPrice,setEndPrice] = useState(0);
-  const basketData = useSelector((state) => state.counter.value);
-  const count = useSelector((state)=>state.counter.count)
-  const dataCount = useSelector((state) => state.counter.count);
-  const [isClickedRadio, setIsClickedRadio] = useState(false);
+  // `useSelector` ilə bütün basketData və itemCounts-i bir dəfə alırıq
+  const basketData = useSelector((state) => state.counter.value); // basketData
+  const itemCounts = useSelector((state) => state.counter); // itemCounts
+
+  const [endPrice, setEndPrice] = useState(0);
+  const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
-  const totalPrice = basketData.reduce((sum,item)=>sum + item.maxPrice,0) * count
- 
-  
-  // setEndPrice( basketData.maxPrice)
-  useEffect(() => {
-    console.log(basketData);
-  }, [basketData]);
+
+  // totalPrice hesablamasını buradaca həyata keçiririk
+  const totalPrice = basketData.reduce((sum, item) => {
+    const itemCount = itemCounts[item.id] || 1; // artıq `useSelector` ilə item saylarını bir dəfə almışıq
+    return sum + item.maxPrice * itemCount; // hər itemin qiymətini count ilə vururuq
+  }, 0);
+
+  const handlePaymentChange = (method) => {
+    setPaymentMethod(method);
+  };
+
   return (
     <>
       <hr className="w-full h-[3px] text-neutral-300 mt-3" />
       <main className="min-h-[80vh] md:px-[120px] py-8">
-        {basketData.length != 0 ? (
+        {basketData.length !== 0 ? (
           <>
             <section className="">
               <div className="flex flex-col justify-center  items-center mb-10">
@@ -109,31 +114,32 @@ function Basket() {
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center w-full">
+                    <div className="flex justify-between">
                         <div
-                          className="flex items-center gap-2 cursor-pointer"
-                          onClick={() => setIsClickedRadio(!isClickedRadio)}
-                        >
-                          <div className="border flex items-center justify-center border-neutral-300  rounded-full size-[27px]">
-                            {isClickedRadio ? (
-                              <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
-                            ) : null}
-                          </div>
-                          <p>nağd ödəniş</p>
+                        className="flex items-center gap-2 cursor-pointer"
+                        onClick={() => handlePaymentChange("cash")} // Nağd ödəniş seçimi
+                      >
+                        <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
+                          {paymentMethod === "cash" ? (
+                            <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
+                          ) : null}
                         </div>
-
-                        <div
-                          className="flex items-center gap-2 cursor-pointer"
-                          onClick={() => setIsClickedRadio(!isClickedRadio)}
-                        >
-                          <div className="border flex items-center justify-center border-neutral-300  rounded-full size-[27px]">
-                            {isClickedRadio ? (
-                              <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
-                            ) : null}
-                          </div>
-                          <p>onlayn ödəniş</p>
-                        </div>
+                        <p>Nağd ödəniş</p>
                       </div>
+
+                      {/* Onlayn ödəniş seçimi */}
+                      <div
+                        className="flex items-center gap-2 cursor-pointer"
+                        onClick={() => handlePaymentChange("online")} // Onlayn ödəniş seçimi
+                      >
+                        <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
+                          {paymentMethod === "online" ? (
+                            <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
+                          ) : null}
+                        </div>
+                        <p>Onlayn ödəniş</p>
+                      </div>
+                    </div>
 
                       <Link to="/login" className="flex flex-col gap-1 w-fit">
                         <p>Daxil ol</p>
@@ -153,8 +159,9 @@ function Basket() {
                 <div className="flex flex-col w-full md:w-[60%] ">
                   <div className="min-h-fit overflow-y-scroll overflow-x-hidden">
                     {basketData.map((item) => {
+                      const dataCount = itemCounts[item.id]; // itemCounts içərisində `useSelector` ilə alındı
                       return (
-                        <React.Fragment key={item.id}>
+                        <div key={item.id}>
                           <div className="flex gap-3 justify-between">
                             <img
                               className=" h-[120px] w-[150px] md:h-[20vh] md:w-[10vw] rounded-xl"
@@ -200,7 +207,7 @@ function Basket() {
                                     >
                                       -
                                     </button>
-                                    <p>{dataCount}</p>
+                                    <p>{dataCount || 1}</p>
                                     <button
                                       onClick={() => dispatch(increment(item))}
                                       className="cursor-pointer text-xl"
@@ -231,7 +238,7 @@ function Basket() {
                             </button>
                           </div>
                           <hr className="w-full h-[2px] text-neutral-300 my-10" />
-                        </React.Fragment>
+                        </div>
                       );
                     })}
                   </div>
@@ -270,10 +277,7 @@ function Basket() {
                     <Link to="" className="underline text-neutral-500">
                       Alışverişə qayıt
                     </Link>
-                    <button
-                      
-                      className="md:flex cursor-pointer hidden py-4 w-[13vw] text-center rounded-4xl hover:bg-green-700 duration-500 bg-green-600 text-white text-xl font-semibold"
-                    >
+                    <button className="md:flex cursor-pointer hidden py-4 w-[13vw] justify-center rounded-4xl hover:bg-green-700 duration-500 bg-green-600 text-white text-xl font-semibold">
                       Sifariş et
                     </button>
                   </div>
