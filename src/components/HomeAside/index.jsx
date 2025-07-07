@@ -23,9 +23,9 @@ function Aside({checkedParfum,setCheckedParfum}) {
   };
 
   const value = useSelector(state=>state.counter.value)
-  useEffect(()=>{
-    console.log(value);
-  },[value])
+  // useEffect(()=>{
+  //   console.log(value);
+  // },[value])
   
 
   const foundedBrand = data?.filter((item) =>

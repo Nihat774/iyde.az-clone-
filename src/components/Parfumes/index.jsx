@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { IoStarSharp } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { AddType, Remove } from "../../store/parfumSlice";
 import Loading from "../Loading";
 import { SuccessAlert } from "../SweetAlert";
 import { Link } from "react-router-dom";
+import { IoStarSharp } from "react-icons/io5";
 function Parfum() {
   const [data, setData] = useState();
   const API_URL = import.meta.env.VITE_API_URL;
@@ -29,11 +29,6 @@ function Parfum() {
     }
   };
   const basketData = useSelector((state) => state.counter.value);
-
-  // useEffect(() => {
-  //   console.log(basketData);
-  // }, [basketData]);
-
   return (
     <>
       {data ? (
@@ -122,7 +117,7 @@ function Parfum() {
                         ₼
                       </span>
                     </p>
-                    {/* <div className="md:hidden flex items-center ">
+                    <div className="md:hidden flex items-center ">
                       {[...Array(raiting)].map((_, i) => (
                         <IoStarSharp
                           key={i}
@@ -136,12 +131,12 @@ function Parfum() {
                         />
                       ))}
                       <p className="text-sm">({raiting})</p>
-                    </div> */}
+                    </div>
                   </Link>
                   <p className="text-[16px] font-semibold">{item.name}</p>
                 </div>
                 {/* stars */}
-                {/* <div className="hidden md:flex items-center ">
+                <div className="hidden md:flex items-center ">
                   {[...Array(raiting)].map((_, i) => (
                     <IoStarSharp key={i} className="text-yellow-400 text-xl" />
                   ))}
@@ -149,7 +144,7 @@ function Parfum() {
                     <IoStarSharp key={i} className="text-neutral-500 text-xl" />
                   ))}
                   ({raiting})
-                </div> */}
+                </div>
 
                 {/* basket button */}
                 <button
