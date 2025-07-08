@@ -1,13 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: [],
-  items:{},
-  count:1
+  items: {},
+  count: 1,
 };
 
 export const counterSlice = createSlice({
-  name: 'counter',
+  name: "counter",
   initialState,
   reducers: {
     increment: (state, action) => {
@@ -27,19 +27,24 @@ export const counterSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.count += action.payload;
     },
-    AddType:(state,action) =>{
-       state.value.push(action.payload)   
+    AddType: (state, action) => {
+      state.value.push(action.payload);
     },
     Remove: (state, action) => {
-  const clickedId = action.payload;
-  if (state.items && state.value) {
-    state.value = state.value.filter((item) => item.id !== clickedId);
-    delete state.items[clickedId];
-  }
-}
+      const clickedId = action.payload;
+      if (state.items && state.value) {
+        state.value = state.value.filter((item) => item.id !== clickedId);
+        delete state.items[clickedId];
+      }
+    },
+     AllRemove: (state) => {
+      state.value = []; // value array-ni boşalt
+      state.items = {};  // items object-ni boşalt
+    },
   },
 });
 
-export const { increment, decrement, incrementByAmount,AddType,Remove } = counterSlice.actions;
+export const { increment, decrement, incrementByAmount, AddType, Remove,AllRemove } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;

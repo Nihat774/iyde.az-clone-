@@ -5,27 +5,54 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { TbCurrencyManat } from "react-icons/tb";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { decrement, increment, Remove } from "../../store/parfumSlice";
+import {
+  AllRemove,
+  decrement,
+  increment,
+  Remove,
+} from "../../store/parfumSlice";
+import { SuccessAlert } from "../../components/SweetAlert";
 
 function Basket() {
-  // `useSelector` ilə bütün basketData və itemCounts-i bir dəfə alırıq
-  const basketData = useSelector((state) => state.counter.value); // basketData
-  const itemCounts = useSelector((state) => state.counter); // itemCounts
+  const basketData = useSelector((state) => state.counter.value);
+  const itemCounts = useSelector((state) => state.counter);
 
-  const [endPrice, setEndPrice] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
   const dispatch = useDispatch();
 
-  // totalPrice hesablamasını buradaca həyata keçiririk
   const totalPrice = basketData.reduce((sum, item) => {
-    const itemCount = itemCounts[item.id] || 1; // artıq `useSelector` ilə item saylarını bir dəfə almışıq
-    return sum + item.maxPrice * itemCount; // hər itemin qiymətini count ilə vururuq
+    const itemCount = itemCounts[item.id] || 1;
+    return sum + item.maxPrice * itemCount;
   }, 0);
 
   const handlePaymentChange = (method) => {
     setPaymentMethod(method);
   };
 
+  const [userData, setUserData] = useState({
+    userName: "",
+    userPhone: "",
+    userCountry: "",
+    userAddress: "",
+    userMessage: "",
+  });
+
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setUserData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = () => {
+    dispatch(AllRemove());
+    SuccessAlert("Sifarişiniz təsdiqləndi");
+  };
+
+  const disabledBtn =
+    !userData.userName ||
+    !userData.userAddress ||
+    !userData.userCountry ||
+    !userData.userMessage ||
+    !userData.userPhone;
   return (
     <>
       <hr className="w-full h-[3px] text-neutral-300 mt-3" />
@@ -55,13 +82,21 @@ function Basket() {
                     <div className="flex flex-col gap-4">
                       <input
                         type="text"
+                        name="userName"
                         className="w-full bg-zinc-200 rounded-2xl py-4 px-8 font-semibold outline-0"
                         placeholder="Ad"
+                        value={userData.userName}
+                        onChange={(e) => handleChange(e)}
+                        required
                       />
                       <input
                         type="text"
+                        name="userPhone"
                         className="w-full bg-neutral-200 rounded-2xl py-4 px-8 font-semibold outline-0"
                         placeholder="Telefon"
+                        value={userData.userPhone}
+                        onChange={(e) => handleChange(e)}
+                        required
                       />
                     </div>
 
@@ -76,26 +111,34 @@ function Basket() {
                     <div className="flex flex-col gap-5 ">
                       <div className="relative">
                         <select
-                          name=""
-                          id=""
+                          onChange={(e) => handleChange(e)}
+                          value={userData.userCountry}
+                          name="userCountry"
+                          required
                           className="w-full font-semibold text-neutral-500 bg-zinc-200 rounded-2xl py-4 px-5 outline-0"
                         >
-                          <option value="">Bakı</option>
-                          <option value="">Sumqayıt</option>
+                          <option value="Bakı">Bakı</option>
+                          <option value="Sumqayıt">Sumqayıt</option>
                         </select>
                         <RiArrowDropDownLine className=" absolute  right-3 top-[12px] text-4xl pointer-events-none" />
                       </div>
 
                       <input
                         type="text"
+                        name="userAddress"
                         className="w-full bg-zinc-200 rounded-2xl py-4 px-8 outline-0 font-semibold"
                         placeholder="Ünvan"
+                        value={userData.userAddress}
+                        onChange={(e) => handleChange(e)}
+                        required
                       />
 
                       <textarea
-                        name=""
-                        id=""
+                        required
+                        name="userMessage"
                         placeholder="Qeydlər"
+                        onChange={(e) => handleChange(e)}
+                        value={userData.userMessage}
                         className="w-full rounded-2xl outline-0 bg-zinc-200 h-[23vh] resize-none font-semibold px-8 py-5"
                       ></textarea>
                     </div>
@@ -114,43 +157,48 @@ function Basket() {
                         </div>
                       </div>
 
-                    <div className="flex justify-between">
+                      <div className="flex justify-between">
                         <div
-                        className="flex items-center gap-2 cursor-pointer"
-                        onClick={() => handlePaymentChange("cash")} // Nağd ödəniş seçimi
-                      >
-                        <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
-                          {paymentMethod === "cash" ? (
-                            <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
-                          ) : null}
+                          className="flex items-center gap-2 cursor-pointer"
+                          onClick={() => handlePaymentChange("cash")} // Nağd ödəniş seçimi
+                        >
+                          <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
+                            {paymentMethod === "cash" ? (
+                              <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
+                            ) : null}
+                          </div>
+                          <p>Nağd ödəniş</p>
                         </div>
-                        <p>Nağd ödəniş</p>
-                      </div>
 
-                      {/* Onlayn ödəniş seçimi */}
-                      <div
-                        className="flex items-center gap-2 cursor-pointer"
-                        onClick={() => handlePaymentChange("online")} // Onlayn ödəniş seçimi
-                      >
-                        <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
-                          {paymentMethod === "online" ? (
-                            <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
-                          ) : null}
+                        {/* Onlayn ödəniş seçimi */}
+                        <div
+                          className="flex items-center gap-2 cursor-pointer"
+                          onClick={() => handlePaymentChange("online")} // Onlayn ödəniş seçimi
+                        >
+                          <div className="border flex items-center justify-center border-neutral-300 rounded-full size-[27px]">
+                            {paymentMethod === "online" ? (
+                              <p className="size-[14px] p-1 bg-red-500 rounded-full"></p>
+                            ) : null}
+                          </div>
+                          <p>Onlayn ödəniş</p>
                         </div>
-                        <p>Onlayn ödəniş</p>
                       </div>
-                    </div>
 
                       <Link to="/login" className="flex flex-col gap-1 w-fit">
                         <p>Daxil ol</p>
                         <hr className="w-full text-black" />
                       </Link>
-                      <Link
-                        to=""
-                        className="flex justify-center md:hidden py-3 w-full  rounded-4xl hover:bg-green-700 duration-500 bg-[#2FB12F] text-white text-lg font-semibold"
+                      <button
+                        onClick={() => handleSubmit()}
+                        disabled={disabledBtn}
+                        className={`${
+                          disabledBtn
+                            ? "bg-neutral-400"
+                            : "hover:bg-green-700 duration-500 bg-[#2FB12F]"
+                        } flex justify-center md:hidden py-3 w-full  rounded-4xl  text-white text-lg font-semibold`}
                       >
                         Sifariş et
-                      </Link>
+                      </button>
                     </div>
                   </form>
                 </div>
@@ -274,10 +322,18 @@ function Basket() {
                     </div>
                   </div>
                   <div className="flex items-center justify-between mt-5">
-                    <Link to="" className="underline text-neutral-500">
+                    <Link to="/" className="underline text-neutral-500">
                       Alışverişə qayıt
                     </Link>
-                    <button className="md:flex cursor-pointer hidden py-4 w-[13vw] justify-center rounded-4xl hover:bg-green-700 duration-500 bg-green-600 text-white text-xl font-semibold">
+                    <button
+                      onClick={handleSubmit}
+                      disabled={disabledBtn}
+                      className={`${
+                        disabledBtn
+                          ? "bg-neutral-500"
+                          : "hover:bg-green-700 duration-500 bg-green-600 cursor-pointer"
+                      } md:flex  hidden py-4 w-[13vw] justify-center rounded-4xl  text-white text-xl font-semibold`}
+                    >
                       Sifariş et
                     </button>
                   </div>
